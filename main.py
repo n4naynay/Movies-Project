@@ -17,6 +17,19 @@ app.mount("/imgs", StaticFiles(directory="imgs"), name='img_avatar2.jpg')
 def login(request: Request):
     return templates.TemplateResponse("login.html", {"request": request})
 
+@app.post("/login")
+async def login_response(request: Request,
+                            username: str = Form(...),
+                            password: str = Form(...),
+                            ):
+
+    try:
+        read_from_table(username,password)
+
+    except:
+        return "User Does Not Exist"
+
+    return
 
 @app.get("/register", response_class=HTMLResponse)
 def register(request: Request):
@@ -53,7 +66,22 @@ async def password(request: Request, email: str = Form(...),
                    username: str = Form(...)):
     print(username, email)
 
-    return read_from_table(username)
+    sender_email = "n4naynay@gmail.com"
+    receiver_email = Email
+    subject = (" SUBJECT: Forgot Password to Movies Point")
+    message = (
+        " In response to your forgot password request, kindly click on this link for a password reset. Do ignore this email if you are not the requestor")
+    text = f"subject : {subject} \n\n {message}"
+
+    server = smtplib.SMTP("smtp.gmail.com", 587)
+    server.starttls()
+    server.login(sender_email, app_password)
+    server.sendmail(sender_email, receiver_email, text)
+
+    print("Email has been sent to " + receiver_email)
+
+
+    #return read_from_table(username)
     #return "If your email is registered with us, a reset password email will be sent to you"
 
 
