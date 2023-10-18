@@ -3,6 +3,10 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 import smtplib
 import requests
+from pathlib import Path
+
+UPLOAD_DIR = Path()/ "uploads"
+
 
 from fastapi.staticfiles import StaticFiles
 
@@ -104,7 +108,13 @@ async def contact_us(request: Request, firstname: str = Form(...),
                      username: str = Form(...),
                      file: UploadFile = Form(...)):
     #print(firstname, lastname, detail, phone, email,file)  ### Create JIRA ticket logging
-    print (dir(file))
+    #print (dir(file))
+
+    data = await file.read()
+    save_to = UPLOAD_DIR / file.filename
+    with open(save_to, "wb") as f:
+        f.write(data)
+    return {"filename" : file.filename}
     #file.write("testing")
     from utils.jira_info import fields
     fields["project"]["key"] = "MOVIES"
