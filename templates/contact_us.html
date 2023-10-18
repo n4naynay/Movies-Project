@@ -43,7 +43,7 @@ input[type=submit]:hover {
 
 <div class="container">
   <img src="imgs/contact-us.jpg" alt="Avatar" class="avatar" style="width:350px;height:200px">
-  <form id="contact-us-form" role="form" autocomplete="off" class="form" method="post" action="/contact_us">
+  <form id="contact-us-form" role="form" autocomplete="off" class="form" method="post" action="/contact_us" enctype="multipart/form-data">
     <label for="fname">First Name</label>
     <input type="text" id="fname" name="firstname" placeholder="Your name..">
 
@@ -72,6 +72,9 @@ input[type=submit]:hover {
     
     <label for="detail">Details</label>
     <textarea id="detail" name="detail" placeholder="Write something..." style="height:200px"></textarea>
+
+    <label for="UploadFile">UploadFile</label>
+    <input type="file" id="UploadFile" name="file" placeholder="Upload your file">
 
     <input type="submit" value="Submit">
   </form>

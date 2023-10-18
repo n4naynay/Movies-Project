@@ -1,16 +1,19 @@
-from fastapi import FastAPI, Form, Request
+from fastapi import FastAPI, Form, Request, File, UploadFile
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
+import smtplib
+import requests
 
 from fastapi.staticfiles import StaticFiles
 
 from utils.azure_sql_database import *
 from utils.jiraAPIWrapper import *
 from utils.jira_info import *
+from utils.credentials import *
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
-app.mount("/imgs", StaticFiles(directory="imgs"), name='img_avatar2.jpg')
+app.mount("/imgs", StaticFiles(directory="imgs"), name='movies_pix.jpg')
 
 
 @app.get("/login", response_class=HTMLResponse)
@@ -67,7 +70,7 @@ async def password(request: Request, email: str = Form(...),
     print(username, email)
 
     sender_email = "n4naynay@gmail.com"
-    receiver_email = Email
+    receiver_email = email
     subject = (" SUBJECT: Forgot Password to Movies Point")
     message = (
         " In response to your forgot password request, kindly click on this link for a password reset. Do ignore this email if you are not the requestor")
@@ -98,8 +101,11 @@ async def contact_us(request: Request, firstname: str = Form(...),
                      phone: str = Form(...),
                      summary: str = Form(...),
                      detail: str = Form(...),
-                     username: str = Form(...)):
-    print(firstname, lastname, detail, phone, email) ### Create JIRA ticket logging
+                     username: str = Form(...),
+                     file: UploadFile = Form(...)):
+    #print(firstname, lastname, detail, phone, email,file)  ### Create JIRA ticket logging
+    print (dir(file))
+    #file.write("testing")
     from utils.jira_info import fields
     fields["project"]["key"] = "MOVIES"
     fields["issuetype"]["name"] = "Task"
@@ -111,10 +117,6 @@ async def contact_us(request: Request, firstname: str = Form(...),
     fields["customfield_10041"] = username
 
     print(fields)
-    
-    
+
     moviejira = JiraAPI.create_conn()
     moviejira.create_issue(fields)
-    
-
-    return templates.TemplateResponse("register.html", {"request": request})
