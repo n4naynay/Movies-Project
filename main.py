@@ -19,6 +19,10 @@ app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 app.mount("/imgs", StaticFiles(directory="imgs"), name='movies_pix.jpg')
 
+@app.get("/", response_class=HTMLResponse)
+def login(request: Request):
+    return templates.TemplateResponse("home.html", {"request": request})
+
 
 @app.get("/login", response_class=HTMLResponse)
 def login(request: Request):
