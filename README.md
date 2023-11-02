@@ -57,8 +57,8 @@ The webapp is hosted on anvil.works **[retinopathyBOT](https://retinopathyBOT.an
 
 ## Authors
 
-**Omolewa Davids**
+**Ezinne Mabawonku**
 
 * **[website](https://www.nenedurugo.com)**
-* **[LinkedIn](https://www.linkedin.com/in/Nene Durugo)**
+* **[LinkedIn](https://www.linkedin.com/in/NeneDurugo)**
 

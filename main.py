@@ -17,7 +17,7 @@ from utils.credentials import *
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
-app.mount("/imgs", StaticFiles(directory="imgs"), name='movies_pix.jpg')
+app.mount("/imgs", StaticFiles(directory="imgs"), name='movies_home.jpg')
 
 @app.get("/", response_class=HTMLResponse)
 def login(request: Request):
