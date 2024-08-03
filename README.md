@@ -49,16 +49,20 @@ FastApi was used to create routes for each HTML page and was also used validate 
 Jira which is an issue tracking software was used to manage and track tasks and issues from the users by assigning it to the responsible persons for prompt closeout
 
 ## Web Deployment
-The webapp is hosted on anvil.works **[retinopathyBOT](https://retinopathyBOT.anvil.app)**. This involve writing some Java Script with Python. Hopefully, the app is still up and running by the time you are reading this readme. This is because of the monthly payment to host the webapp on anvil.works
+The code was successfully deployed and maintained on EC2 instance to ensure reliable and scalable web applications.
+Utilised Git version control systems to manage code repositories and ensure version control during deployment processes
+(https://xxxxxx.com)**. This involve writing some Java Script with Python.
+Hopefully, the app is still up and running by the time you are reading this readme.
+This is because of the monthly payment to host the webapp on anvil.works
 
 ## Limitiation
-* The speech recognition API currently works of firefox and chrome browser
+* The speech recognition API currently works on firefox and chrome browser
 * Cloud deployment cost money, so the app might not be on for long time
 
 ## Authors
 
 **Ezinne Mabawonku**
 
-* **[website](https://www.nenedurugo.com)**
+* **[website](https://github.com/n4naynay)**
 * **[LinkedIn](https://www.linkedin.com/in/NeneDurugo)**
 
